@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор улыбки Ксюши 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff69b4, #ff1493, #ff69b4);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: sparkle 3s infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(0deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(360deg); }
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #ff1493;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
+            to { text-shadow: 2px 2px 20px rgba(255, 20, 147, 0.5); }
+        }
+
+        .heart {
+            font-size: 3em;
+            color: #ff0000;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin: 20px 0;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .counter {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            margin: 20px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, #fff5f7, #ffe6f0);
+            border: 3px solid #ff69b4;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message-box::before {
+            content: '💕';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .message {
+            font-size: 1.3em;
+            color: #333;
+            line-height: 1.6;
+            font-weight: 500;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .generate-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+            margin: 20px 0;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+        }
+
+        .generate-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5em;
+            color: #ff69b4;
+            animation: floatUp 6s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .special-date {
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(255, 20, 147, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+            
+            .message {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <h1 class="title">Генератор улыбки Ксюши</h1>
+        
+        <div class="heart">💕</div>
+        
+        <div class="counter" id="counter">
+            Мы вместе уже: <span id="daysCount">0</span> дней
+        </div>
+        
+        <div class="special-date">
+            💕 6 июля 2025 - день, когда всё изменилось 💕
+        </div>
+        
+        <div class="message-box">
+            <div class="message" id="message">
+                Нажми кнопку, чтобы узнать, почему я тебя люблю 💕
+            </div>
+        </div>
+        
+        <button class="generate-btn" onclick="generateMessage()">
+            💕 Подарить улыбку 💕
+        </button>
+    </div>
+
+    <script>
+        // Персональные данные для Ксюши
+        const reasons = [
+            "Я люблю тебя потому что ты многогранная 💕",
+            "Люблю тебя потому что ты человек, который разукрасил мою серую жизнь 🌈",
+            "Люблю тебя за то что ты веришь в меня 💪",
+            "Люблю тебя за то что ты уникальная ✨",
+            "Люблю тебя за то что ты всегда учишь меня чему-то новому и интересному 📚",
+            "Люблю тебя за твою улыбку, которая освещает весь мир 😊",
+            "Люблю тебя за то, как ты заботишься обо мне 💝",
+            "Люблю тебя за твою доброту и нежность 🥰",
+            "Люблю тебя за то, что ты понимаешь меня без слов 🤗",
+            "Люблю тебя за твою силу духа и решительность 💪",
+            "Люблю тебя за то, что ты делаешь меня лучше каждый день 🌟",
+            "Люблю тебя за твою искренность и честность 💎",
+            "Люблю тебя за то, что ты всегда поддерживаешь меня 🤝",
+            "Люблю тебя за твою мудрость и ум 💭",
+            "Люблю тебя за то, что ты умеешь слушать и понимать 👂",
+            "Люблю тебя за твою красоту, которая идет изнутри 🌸",
+            "Люблю тебя за то, что ты умеешь прощать 💕",
+            "Люблю тебя за твою преданность и верность 💖",
+            "Люблю тебя за то, что ты умеешь радоваться мелочам 🎉",
+            "Люблю тебя за твою смелость и отвагу 🦁",
+            "Люблю тебя за твои прикольные идеи 💡"
+        ];
+
+        const memories = [
+            "Помнишь, как мы познакомились случайно на проспекте мира? Хотя мы шутим, что 'пересеклись' 😄",
+            "А как я потерялся в 'Заветах' на территории участка? Ты тогда так смеялась! 🏡",
+            "Наше первое свидание с пиццей с тунцом - это было так мило! 🍕",
+            "Помнишь, как я разлил массажное масло? Ты была такой терпеливой! 😅",
+            "Во время твоих экзаменов я пришел помочь справиться с нервами - это было особенное время 📚",
+            "Первый раз, когда мы ночевали в одной кровати... Ты взяла меня за руку, и я понял - это любовь 💕",
+            "Когда я ругался с отцом, ты была рядом и помогла мне - спасибо тебе за это 🤗",
+            "Ты всегда рядом, когда мне нужна поддержка - это бесценно 💝"
+        ];
+
+        const compliments = [
+            "Ксюша, ты самое красивое, что случилось в моей жизни 🌹",
+            "Твои глаза светятся, как звезды в ночном небе ⭐",
+            "Ты делаешь каждый мой день особенным ✨",
+            "С тобой я чувствую себя самым счастливым человеком на свете 😊",
+            "Твоя улыбка - это мое любимое чудо 🌟",
+            "Ты умеешь превращать обычные моменты в волшебные 🎭",
+            "С тобой я забываю обо всех проблемах 💫",
+            "Ты - мое самое большое счастье 💕",
+            "Ксюша, твои прикольные идеи всегда меня удивляют! 💡"
+        ];
+
+        // Счетчик дней
+        function updateCounter() {
+            const startDate = new Date('2025-07-06');
+            const today = new Date();
+            const diffTime = Math.abs(today - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('daysCount').textContent = diffDays;
+        }
+
+        // Генерация сообщений
+        function generateMessage() {
+            const messageBox = document.getElementById('message');
+            const allMessages = [...reasons, ...memories, ...compliments];
+            const randomMessage = allMessages[Math.floor(Math.random() * allMessages.length)];
+            
+            messageBox.style.opacity = '0';
+            
+            setTimeout(() => {
+                messageBox.textContent = randomMessage;
+                messageBox.style.opacity = '1';
+                createFloatingHearts();
+            }, 300);
+        }
+
+        // Создание летающих сердечек
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = '💕';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Автоматическое создание сердечек
+        setInterval(createFloatingHearts, 2000);
+
+        // Инициализация
+        updateCounter();
+        setInterval(updateCounter, 60000); // Обновляем счетчик каждую минуту
+
+        // Специальная анимация при загрузке
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                generateMessage();
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 
