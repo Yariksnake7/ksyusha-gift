@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff69b4, #32cd32, #ff1493, #90ee90);
+            background: linear-gradient(135deg, #ff69b4, #228b22, #ff1493, #006400);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -131,7 +131,7 @@
         }
 
         .generate-btn {
-            background: linear-gradient(45deg, #ff69b4, #32cd32, #ff1493);
+            background: #ff69b4;
             color: white;
             border: none;
             padding: 15px 30px;
@@ -140,13 +140,22 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3), 0 5px 15px rgba(50, 205, 50, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
             margin: 20px 0;
         }
 
         .generate-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4), 0 8px 25px rgba(50, 205, 50, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+        }
+
+        .generate-btn.green {
+            background: #228b22;
+            box-shadow: 0 5px 15px rgba(34, 139, 34, 0.4);
+        }
+
+        .generate-btn.green:hover {
+            box-shadow: 0 8px 25px rgba(34, 139, 34, 0.6);
         }
 
         .generate-btn:active {
@@ -203,6 +212,109 @@
             box-shadow: 0 3px 10px rgba(255, 20, 147, 0.3), 0 3px 10px rgba(50, 205, 50, 0.3);
         }
 
+        /* Стили для страницы входа */
+        .login-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-title {
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #ff1493, #228b22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .date-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .date-inputs input {
+            width: 80px;
+            padding: 12px;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            font-size: 1.1em;
+            text-align: center;
+            background: white;
+        }
+
+        .date-inputs input:focus {
+            outline: none;
+            border-color: #228b22;
+            box-shadow: 0 0 10px rgba(34, 139, 34, 0.3);
+        }
+
+        .allergy-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            font-size: 1.1em;
+            background: white;
+        }
+
+        .allergy-input:focus {
+            outline: none;
+            border-color: #228b22;
+            box-shadow: 0 0 10px rgba(34, 139, 34, 0.3);
+        }
+
+        .login-btn {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            margin: 30px 0 20px 0;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+        }
+
+        .error-message {
+            color: #ff0000;
+            font-weight: bold;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -216,13 +328,59 @@
             .message {
                 font-size: 1.1em;
             }
+
+            .login-container {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .login-title {
+                font-size: 2em;
+            }
+
+            .date-inputs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .date-inputs input {
+                width: 120px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="floating-hearts" id="floatingHearts"></div>
     
-    <div class="container">
+    <!-- Страница входа -->
+    <div class="login-container" id="loginPage">
+        <h1 class="login-title">💕 Добро пожаловать 💕</h1>
+        
+        <div class="input-group">
+            <label>Введите дату, когда мы начали встречаться:</label>
+            <div class="date-inputs">
+                <input type="number" id="day" placeholder="День" min="1" max="31">
+                <input type="number" id="month" placeholder="Месяц" min="1" max="12">
+                <input type="number" id="year" placeholder="Год" min="2020" max="2030">
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label>На что у вашего парня аллергия?</label>
+            <input type="text" id="allergy" class="allergy-input" placeholder="Введите ответ...">
+        </div>
+        
+        <div class="error-message" id="errorMessage">
+            Неправильные данные! Попробуйте еще раз.
+        </div>
+        
+        <button class="login-btn" onclick="checkLogin()">
+            💕 Подтвердить 💕
+        </button>
+    </div>
+    
+    <!-- Основная страница сайта -->
+    <div class="container hidden" id="mainPage">
         <h1 class="title">Генератор улыбки Ксюши</h1>
         
         <div class="heart">💕</div>
@@ -275,7 +433,7 @@
         const memories = [
             "Помнишь, как мы познакомились случайно на проспекте мира? Хотя мы шутим, что 'пересеклись' 😄",
             "А как я потерялся в 'Заветах' на территории участка? Ты тогда так смеялась! 🏡",
-            "Наше первое свидание с пиццей с тунцом - это было так мило! 🍕",
+            "Помнишь, как мы заказали пиццу с тунцом? Я бы никогда не съел такое, но с тобой было вкусно! 🍕",
             "Помнишь, как я разлил массажное масло? Ты была такой терпеливой! 😅",
             "Во время твоих экзаменов я пришел помочь справиться с нервами - это было особенное время 📚",
             "Первый раз, когда мы ночевали в одной кровати... Ты взяла меня за руку, и я понял - это любовь 💕",
@@ -341,15 +499,65 @@
         // Автоматическое создание сердечек
         setInterval(createFloatingHearts, 2000);
 
-        // Инициализация
-        updateCounter();
-        setInterval(updateCounter, 60000); // Обновляем счетчик каждую минуту
-
-        // Специальная анимация при загрузке
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                generateMessage();
-            }, 1000);
+        // Функция проверки входа
+        function checkLogin() {
+            const day = document.getElementById('day').value;
+            const month = document.getElementById('month').value;
+            const year = document.getElementById('year').value;
+            const allergy = document.getElementById('allergy').value.toLowerCase().trim();
+            
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Проверяем дату (06.07.2025)
+            const isCorrectDate = day === '6' && month === '7' && year === '2025';
+            
+            // Проверяем аллергию (различные варианты)
+            const correctAllergyAnswers = ['кокос', 'на кокос', 'на кокос', 'на кокос'];
+            const isCorrectAllergy = correctAllergyAnswers.includes(allergy);
+            
+            if (isCorrectDate && isCorrectAllergy) {
+                // Скрываем страницу входа и показываем основную страницу
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('mainPage').classList.remove('hidden');
+                
+                // Инициализируем основную страницу
+                updateCounter();
+                setInterval(updateCounter, 60000);
+                
+                // Специальная анимация при успешном входе
+                setTimeout(() => {
+                    generateMessage();
+                }, 1000);
+                
+                // Создаем праздничные сердечки
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        createFloatingHearts();
+                    }, i * 100);
+                }
+            } else {
+                // Показываем ошибку
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Неправильные данные! Попробуйте еще раз.';
+                
+                // Очищаем поля
+                document.getElementById('day').value = '';
+                document.getElementById('month').value = '';
+                document.getElementById('year').value = '';
+                document.getElementById('allergy').value = '';
+            }
+        }
+        
+        // Обработка нажатия Enter в полях ввода
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('#day, #month, #year, #allergy');
+            inputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkLogin();
+                    }
+                });
+            });
         });
     </script>
 </body>
