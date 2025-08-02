@@ -304,11 +304,40 @@
             box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
         }
 
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .love-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: #ff69b4;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            margin: 0;
+        }
+
         .error-message {
             color: #ff0000;
             font-weight: bold;
             margin: 10px 0;
             display: none;
+        }
+
+        #loveError {
+            color: #ff69b4;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-left: 30px;
         }
 
         .hidden {
@@ -368,6 +397,14 @@
         <div class="input-group">
             <label>На что у вашего парня аллергия?</label>
             <input type="text" id="allergy" class="allergy-input" placeholder="Введите ответ...">
+        </div>
+        
+        <div class="input-group">
+            <div class="checkbox-container">
+                <input type="checkbox" id="loveCheck" class="love-checkbox">
+                <label for="loveCheck" class="checkbox-label">Ты меня любишь?</label>
+            </div>
+            <div class="error-message" id="loveError">ээээээээй</div>
         </div>
         
         <div class="error-message" id="errorMessage">
@@ -530,8 +567,20 @@
             const month = document.getElementById('month').value;
             const year = document.getElementById('year').value;
             const allergy = document.getElementById('allergy').value.toLowerCase().trim();
+            const loveCheck = document.getElementById('loveCheck').checked;
             
             const errorMessage = document.getElementById('errorMessage');
+            const loveError = document.getElementById('loveError');
+            
+            // Скрываем все ошибки сначала
+            errorMessage.style.display = 'none';
+            loveError.style.display = 'none';
+            
+            // Проверяем чекбокс любви
+            if (!loveCheck) {
+                loveError.style.display = 'block';
+                return;
+            }
             
             // Проверяем дату (06.07.2025)
             const isCorrectDate = day === '6' && month === '7' && year === '2025';
@@ -573,6 +622,7 @@
                 document.getElementById('month').value = '';
                 document.getElementById('year').value = '';
                 document.getElementById('allergy').value = '';
+                document.getElementById('loveCheck').checked = false;
             }
         }
         
