@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff69b4, #ff1493, #ff69b4);
+            background: linear-gradient(135deg, #ff69b4, #32cd32, #ff1493, #90ee90);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -51,7 +51,10 @@
 
         .title {
             font-size: 2.5em;
-            color: #ff1493;
+            background: linear-gradient(45deg, #ff1493, #32cd32);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             animation: glow 2s ease-in-out infinite alternate;
@@ -59,7 +62,7 @@
 
         @keyframes glow {
             from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
-            to { text-shadow: 2px 2px 20px rgba(255, 20, 147, 0.5); }
+            to { text-shadow: 2px 2px 20px rgba(255, 20, 147, 0.5), 2px 2px 20px rgba(50, 205, 50, 0.5); }
         }
 
         .heart {
@@ -75,19 +78,20 @@
         }
 
         .counter {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            background: linear-gradient(45deg, #ff69b4, #32cd32, #ff1493);
             color: white;
             padding: 15px 25px;
             border-radius: 25px;
             margin: 20px 0;
             font-size: 1.2em;
             font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3), 0 5px 15px rgba(50, 205, 50, 0.3);
         }
 
         .message-box {
-            background: linear-gradient(135deg, #fff5f7, #ffe6f0);
-            border: 3px solid #ff69b4;
+            background: linear-gradient(135deg, #fff5f7, #f0fff0, #ffe6f0);
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #ff69b4, #32cd32) 1;
             border-radius: 15px;
             padding: 30px;
             margin: 30px 0;
@@ -127,7 +131,7 @@
         }
 
         .generate-btn {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            background: linear-gradient(45deg, #ff69b4, #32cd32, #ff1493);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -136,13 +140,13 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3), 0 5px 15px rgba(50, 205, 50, 0.3);
             margin: 20px 0;
         }
 
         .generate-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4), 0 8px 25px rgba(50, 205, 50, 0.4);
         }
 
         .generate-btn:active {
@@ -167,6 +171,10 @@
             opacity: 0.6;
         }
 
+        .floating-heart:nth-child(even) {
+            color: #32cd32;
+        }
+
         @keyframes floatUp {
             0% {
                 transform: translateY(100vh) rotate(0deg);
@@ -185,14 +193,14 @@
         }
 
         .special-date {
-            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            background: linear-gradient(45deg, #ff1493, #32cd32, #ff69b4);
             color: white;
             padding: 10px 20px;
             border-radius: 15px;
             margin: 15px 0;
             font-size: 1.1em;
             font-weight: bold;
-            box-shadow: 0 3px 10px rgba(255, 20, 147, 0.3);
+            box-shadow: 0 3px 10px rgba(255, 20, 147, 0.3), 0 3px 10px rgba(50, 205, 50, 0.3);
         }
 
         @media (max-width: 768px) {
@@ -316,7 +324,10 @@
             const heartsContainer = document.getElementById('floatingHearts');
             const heart = document.createElement('div');
             heart.className = 'floating-heart';
-            heart.textContent = '💕';
+            
+            // Чередуем розовые и зеленые сердечки
+            const hearts = ['💕', '💚', '💖', '💚'];
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
             
